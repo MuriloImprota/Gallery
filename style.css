@@ -1,0 +1,227 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    font-size: 62.5%;
+    --color-base-gray-100: hsl(0, 0%, 96%);
+    --color-base-white: hsl(0, 0%, 100%);
+    --color-base-gray-300: hsl(var(--hue), 40%, 58%);
+    --color-base-gray-500: hsl(0, 0%, 24%);
+    --color-base-gray-900: hsl(var(--hue), 40%, 13%);
+    --hue: 100;
+    font-family: 'Mulish', sans-serif;
+}
+
+html, body, input {
+    font-family: 'Mulish', sans-serif;
+
+}
+
+body {
+
+font-size: 1.6rem;    
+background: var(--color-base-white);
+}
+
+
+#app {
+
+display: grid;
+height: 100vh;
+grid-template-rows: max-content 1fr max-content; /*a medida que o header e o footer aumentam, mais espaço é alocado dentro deles com esse comando*/
+}
+
+.container {
+padding: 1.6rem 3.2rem;
+width: min(112rem, 100%);
+margin: 0 auto;
+
+}
+
+main {
+background: var(--color-base-gray-100);
+overflow-y: scroll; /*adiciona a rolagem no eixo y, ou seja apenas no main */
+
+}
+
+header, nav, ul {
+ display: flex;   
+ align-items: center;
+ gap: 7.2rem;
+ font-weight: 700;
+}
+
+header form {
+flex: 1; /*vai preencher todo o espaço disponivel para ele com a barra de navegaçao no caso*/
+
+}
+
+
+ul {
+list-style: none; /*remove a formatacao da lista com os pontos*/
+font-size: 1.8rem;
+color: var(--color-base-gray-300);
+
+}
+
+ul li.active {
+    color: var(--color-base-gray-900);
+   
+ 
+}
+
+.input-wrapper label {
+width: 1px;
+height: 1px;
+overflow: hidden;
+position: absolute;
+}
+
+.input-wrapper input {
+width: 100%;
+padding: 1.6rem;
+background-color: var(--color-base-gray-100);
+border: 0;
+border-radius: 0.6rem;
+font-size: 1.6rem;
+font-weight: 600;
+}
+
+.input-wrapper input::placeholder {
+    opacity: 0.56;
+    color: var(--color-base-gray-500);
+
+}
+
+
+
+.avatar {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%; /*faz o arredondamento do item selecionado*/
+    object-fit: cover;
+}
+
+main h1 {
+font-size: 2.4rem;
+padding-top: 1.6rem ;
+
+}
+
+.gallery {
+display: grid;
+margin-top: 3.2rem;
+grid-template-columns: repeat(3, 1fr);
+gap: 2.2rem;
+
+}
+
+.item {
+background: var(--color-base-white);
+border-radius: 0.8rem;
+
+}
+
+.item img {
+display: block;    
+width: 100%;
+aspect-ratio: 16/9; /*define o tamanho da proporçao da imagem, no caso 16:9 */
+object-fit: cover; /*faz com que o objeto em questao, cubra o tamanho proporcional se ajeitando no lugar determinado */
+border-radius: 0.8rem;
+/* comandos para aplicar propriedades de efeitos */
+transition-property: all;   /* seleciona todos os elementos escolhidos, no caso duration e delay */
+transition-duration: 300ms; /* tempo de duraçao do efeito */
+transition-delay: 0; /* tempo para iniciar o efeito */
+transition-timing-function: ease-in-out; /* curva para controlar o efeito */
+
+/* transition: all 300ms ease-in-out   é possivel fazer em um comando unico */ 
+}
+
+.item img:hover {
+filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+transform: scale(1.1) rotate(-1deg);
+
+}
+
+.details {
+padding: 2.2rem;
+background: var(--color-base-white);
+z-index: 1;
+
+}
+
+.details h2 {
+font-size: 1.8rem;
+
+}
+
+.tags {
+
+margin-top: 1.2rem;    
+
+}
+
+.tags span {
+padding: 0.6rem;
+background: var(--color-base-gray-100);
+border-radius: 0.4rem;
+line-height: 0;
+font-size: 1.2rem;
+text-transform: uppercase;
+}
+
+footer p {
+text-align: center;
+font-weight: 600;
+padding: 1.6rem;
+
+}
+
+header {
+   animation-name: move; 
+   animation-duration: 1s;
+   --startY:-100%;
+}
+
+footer {
+    animation-name: move; 
+    animation-duration: 1s;
+    --startY:100%;
+
+}
+
+@keyframes move {
+
+    from {
+     transform: translateY(var(--startY));   
+    }
+}
+
+.item {
+
+animation-name: appear;
+animation-duration: .4s;
+animation-delay: var(--delay);
+animation-fill-mode: backwards;
+--delay: .4s
+
+}
+
+@keyframes appear {
+
+0% {
+    opacity: 0;
+    transform:scale(0.7)
+}
+
+50% {
+transform:scale(1.2)
+
+}
+
+}
